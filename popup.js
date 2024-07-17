@@ -21,7 +21,7 @@ const addNewBookmark = (bookmarks, bookmark) => {
   bookmarks.appendChild(newBookmarkElement);
 };
 
-const viewBookmarks = (currentBookmarks=[]) => {
+const viewBookmarks = (currentBookmarks = []) => {
   const bookmarksElement = document.getElementById("bookmarks");
   bookmarksElement.innerHTML = "";
 
@@ -37,7 +37,7 @@ const viewBookmarks = (currentBookmarks=[]) => {
   return;
 };
 
-const onPlay = async e => {
+const onPlay = async (e) => {
   const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
   const activeTab = await getActiveTabURL();
 
@@ -47,12 +47,10 @@ const onPlay = async e => {
   });
 };
 
-const onDelete = async e => {
+const onDelete = async (e) => {
   const activeTab = await getActiveTabURL();
   const bookmarkTime = e.target.parentNode.parentNode.getAttribute("timestamp");
-  const bookmarkElementToDelete = document.getElementById(
-    "bookmark-" + bookmarkTime
-  );
+  const bookmarkElementToDelete = document.getElementById("bookmark-" + bookmarkTime);
 
   bookmarkElementToDelete.parentNode.removeChild(bookmarkElementToDelete);
 
@@ -62,7 +60,7 @@ const onDelete = async e => {
   }, viewBookmarks);
 };
 
-const setBookmarkAttributes =  (src, eventListener, controlParentElement) => {
+const setBookmarkAttributes = (src, eventListener, controlParentElement) => {
   const controlElement = document.createElement("img");
 
   controlElement.src = "assets/" + src + ".png";
@@ -90,4 +88,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = '<div class="title">This is not a youtube video page.</div>';
   }
 });
-
